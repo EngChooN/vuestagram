@@ -12,6 +12,9 @@
 
     <Container :boards="boards" />
 
+    <!-- 클릭시 axios를 이용해 받은 데이터를 기존 데이터 배열에 추가하는 함수가 실행됨 -->
+    <button @click="onClickMore">더보기</button>
+
     <div class="footer">
       <ul class="footer-button-plus">
         <input type="file" id="file" class="inputfile" />
@@ -24,6 +27,7 @@
 <script>
 import Container from "./components/Container.vue";
 import boards from "./data/boards";
+import axios from "axios";
 
 export default {
   name: "App",
@@ -33,7 +37,28 @@ export default {
   data() {
     return {
       boards,
+      moreCount: 0,
     };
+  },
+  methods: {
+    onClickMore() {
+      axios
+        .get(
+          "https://codingapple1.github.io/vue/more" + this.moreCount + ".json"
+        )
+        .then((result) => {
+          console.log(result);
+
+          // 글목록 데이터(배열)에 GET받은 데이터를 추가함
+          this.boards.push(result.data);
+
+          // this.moreCount++;
+          this.moreCount = this.moreCount + 1;
+        })
+        .catch(() => {
+          alert("게시물이 없음!! (catch)");
+        });
+    },
   },
 };
 </script>
