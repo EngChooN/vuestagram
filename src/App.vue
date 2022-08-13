@@ -10,7 +10,7 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container :boards="boards" />
+    <Container :boards="boards" :tapState="tapState" />
 
     <!-- 클릭시 axios를 이용해 받은 데이터를 기존 데이터 배열에 추가하는 함수가 실행됨 -->
     <button @click="onClickMore">더보기</button>
@@ -21,6 +21,14 @@
         <label for="file" class="input-plus">+</label>
       </ul>
     </div>
+
+    <!-- 탭 구현 -->
+    <!-- <div v-if="tapState === 1">tap1</div>
+    <div v-if="tapState === 2">tap2</div>
+    <div v-if="tapState === 3">tap3</div> -->
+    <button @click="tapState = 1">Button1</button>
+    <button @click="tapState = 2">Button2</button>
+    <button @click="tapState = 3">Button3</button>
   </div>
 </template>
 
@@ -38,6 +46,7 @@ export default {
     return {
       boards,
       moreCount: 0,
+      tapState: 1,
     };
   },
   methods: {

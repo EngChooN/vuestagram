@@ -25,7 +25,7 @@
 export default {
   name: "PostComponent",
   props: {
-    elBoards: Array,
+    elBoards: Object,
   },
 };
 </script>
