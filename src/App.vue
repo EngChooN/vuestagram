@@ -10,14 +10,14 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container :boards="boards" :tapState="tapState" />
+    <Container :boards="boards" :tapState="tapState" :imgUrl="imgUrl" />
 
     <!-- 클릭시 axios를 이용해 받은 데이터를 기존 데이터 배열에 추가하는 함수가 실행됨 -->
     <button @click="onClickMore">더보기</button>
 
     <div class="footer">
       <ul class="footer-button-plus">
-        <input type="file" id="file" class="inputfile" />
+        <input type="file" @change="uploadImg" id="file" class="inputfile" />
         <label for="file" class="input-plus">+</label>
       </ul>
     </div>
@@ -47,6 +47,7 @@ export default {
       boards,
       moreCount: 0,
       tapState: 1,
+      imgUrl: "",
     };
   },
   methods: {
@@ -67,6 +68,13 @@ export default {
         .catch(() => {
           alert("게시물이 없음!! (catch)");
         });
+    },
+    uploadImg(event) {
+      let img = event.target.files;
+      console.log(img[0]);
+      this.imgUrl = URL.createObjectURL(img[0]);
+      console.log(this.imgUrl);
+      this.tapState++;
     },
   },
 };

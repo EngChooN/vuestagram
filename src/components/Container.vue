@@ -6,7 +6,10 @@
 
     <!-- 필터선택페이지 -->
     <div v-if="tapState == 2">
-      <div class="upload-image"></div>
+      <div
+        class="upload-image"
+        :style="{ backgroundImage: `url(${imgUrl})` }"
+      ></div>
       <div class="filters">
         <div class="filter-1"></div>
         <div class="filter-1"></div>
@@ -37,6 +40,7 @@ export default {
   props: {
     boards: Array,
     tapState: Number,
+    imgUrl: String,
   },
 };
 </script>
