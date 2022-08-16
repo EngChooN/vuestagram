@@ -5,9 +5,10 @@
         <li>Cancel</li>
       </ul>
       <ul class="header-button-right">
-        <li>Next</li>
+        <li v-if="tapState == 2">Next</li>
+        <li v-if="tapState == 3">발행</li>
       </ul>
-      <img src="./assets/logo.png" class="logo" />
+      <img @click="tapState = 1" src="./assets/logo.png" class="logo" />
     </div>
 
     <Container :boards="boards" :tapState="tapState" :imgUrl="imgUrl" />
@@ -21,14 +22,6 @@
         <label for="file" class="input-plus">+</label>
       </ul>
     </div>
-
-    <!-- 탭 구현 -->
-    <!-- <div v-if="tapState === 1">tap1</div>
-    <div v-if="tapState === 2">tap2</div>
-    <div v-if="tapState === 3">tap3</div> -->
-    <button @click="tapState = 1">Button1</button>
-    <button @click="tapState = 2">Button2</button>
-    <button @click="tapState = 3">Button3</button>
   </div>
 </template>
 
