@@ -2,19 +2,27 @@
   <div>
     <div class="header">
       <ul class="header-button-left">
-        <li>Cancel</li>
+        <li @click="tapState = 1" v-if="tapState == 2 || tapState == 3">
+          Cancel
+        </li>
       </ul>
       <ul class="header-button-right">
-        <li v-if="tapState == 2">Next</li>
-        <li v-if="tapState == 3">발행</li>
+        <li v-if="tapState == 2" @click="tapState = 3">Next</li>
+        <li v-if="tapState == 3" @click="submit">발행</li>
       </ul>
-      <img @click="tapState = 1" src="./assets/logo.png" class="logo" />
+      <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container :boards="boards" :tapState="tapState" :imgUrl="imgUrl" />
+    <Container
+      :muContent="myContent"
+      :boards="boards"
+      :tapState="tapState"
+      :imgUrl="imgUrl"
+      @onChangeContent="myContent = $event"
+    />
 
     <!-- 클릭시 axios를 이용해 받은 데이터를 기존 데이터 배열에 추가하는 함수가 실행됨 -->
-    <button @click="onClickMore">더보기</button>
+    <button v-if="tapState == 1" @click="onClickMore">더보기</button>
 
     <div class="footer">
       <ul class="footer-button-plus">
@@ -41,6 +49,7 @@ export default {
       moreCount: 0,
       tapState: 1,
       imgUrl: "",
+      myContent: "",
     };
   },
   methods: {
@@ -68,6 +77,20 @@ export default {
       this.imgUrl = URL.createObjectURL(img[0]);
       console.log(this.imgUrl);
       this.tapState++;
+    },
+    submit() {
+      const myBoard = {
+        name: "TEST",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.imgUrl,
+        likes: 0,
+        date: "May 15",
+        liked: false,
+        content: this.myContent,
+        filter: "perpetua",
+      };
+      this.boards.unshift(myBoard);
+      this.tapState = 1;
     },
   },
 };
@@ -133,7 +156,7 @@ ul {
   width: 80px;
   margin: auto;
   text-align: center;
-  cursor: pointer;
+  /* cursor: pointer; */
   font-size: 24px;
   padding-top: 12px;
 }
@@ -144,6 +167,7 @@ ul {
 }
 .inputfile {
   display: none;
+  cursor: pointer;
 }
 .input-plus {
   cursor: pointer;

@@ -11,19 +11,32 @@
         :style="{ backgroundImage: `url(${imgUrl})` }"
       ></div>
       <div class="filters">
+        <!-- <div class="filter-1"></div>
         <div class="filter-1"></div>
         <div class="filter-1"></div>
         <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
+        <div class="filter-1"></div> -->
+        <FilterBox
+          v-for="(el, index) in filters"
+          :key="index"
+          :imgUrl="imgUrl"
+          :filters="el"
+        />
       </div>
     </div>
 
     <!-- 글작성페이지 -->
     <div v-if="tapState == 3">
-      <div class="upload-image"></div>
+      <div
+        class="upload-image"
+        :style="{ backgroundImage: `url(${imgUrl})` }"
+      ></div>
       <div class="write">
-        <textarea class="write-box">write!</textarea>
+        <textarea
+          class="write-box"
+          placeholder="write text!"
+          @change="onChangeContent"
+        ></textarea>
       </div>
     </div>
   </div>
@@ -31,16 +44,56 @@
 
 <script>
 import Post from "./Post.vue";
+import FilterBox from "./FilterBox.vue";
 
 export default {
   name: "ContainerComponent",
   components: {
     Post,
+    FilterBox,
   },
   props: {
     boards: Array,
     tapState: Number,
     imgUrl: String,
+    myContent: String,
+  },
+  methods: {
+    onChangeContent(e) {
+      this.$emit("onChangeContent", e.target.value);
+    },
+  },
+  data() {
+    return {
+      filters: [
+        "aden",
+        "_1977",
+        "brannan",
+        "brooklyn",
+        "clarendon",
+        "earlybird",
+        "gingham",
+        "hudson",
+        "inkwell",
+        "kelvin",
+        "lark",
+        "lofi",
+        "maven",
+        "mayfair",
+        "moon",
+        "nashville",
+        "perpetua",
+        "reyes",
+        "rise",
+        "slumber",
+        "stinson",
+        "toaster",
+        "valencia",
+        "walden",
+        "willow",
+        "xpro2",
+      ],
+    };
   },
 };
 </script>
