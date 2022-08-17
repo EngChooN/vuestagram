@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <!-- 글작성페이지 -->
+    <!-- 글작성페이지. -->
     <div v-if="tapState == 3">
       <div
         class="upload-image"
