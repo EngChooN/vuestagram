@@ -58,6 +58,7 @@ export default {
   height: 450px;
   background-position: center;
   background-size: cover;
+  z-index: -1;
 }
 .post-content {
   padding-left: 15px;
