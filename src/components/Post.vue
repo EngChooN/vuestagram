@@ -8,7 +8,7 @@
       <span class="profile-name">{{ elBoards.name }}</span>
     </div>
     <div
-      class="post-body"
+      :class="`${elBoards.filter} post-body`"
       :style="{ backgroundImage: 'url(' + elBoards.postImage + ')' }"
     ></div>
     <div class="post-content">

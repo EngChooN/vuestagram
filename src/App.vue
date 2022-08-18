@@ -19,6 +19,7 @@
       :tapState="tapState"
       :imgUrl="imgUrl"
       @onChangeContent="myContent = $event"
+      @applyFilter="myFilter = $event"
     />
 
     <!-- 클릭시 axios를 이용해 받은 데이터를 기존 데이터 배열에 추가하는 함수가 실행됨 -->
@@ -50,6 +51,7 @@ export default {
       tapState: 1,
       imgUrl: "",
       myContent: "",
+      myFilter: "",
     };
   },
   methods: {
@@ -87,8 +89,9 @@ export default {
         date: "May 15",
         liked: false,
         content: this.myContent,
-        filter: "perpetua",
+        filter: this.myFilter,
       };
+      console.log("업로드한 글 정보", myBoard);
       this.boards.unshift(myBoard);
       this.tapState = 1;
     },

@@ -2,6 +2,7 @@
   <div
     :class="`${filters} filter-item`"
     :style="{ backgroundImage: `url(${imgUrl})` }"
+    @click="$emit('clickFilter', filters)"
   ></div>
 </template>
 

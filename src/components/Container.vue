@@ -7,7 +7,7 @@
     <!-- 필터선택페이지 -->
     <div v-if="tapState == 2">
       <div
-        class="upload-image"
+        :class="`${filterValue} upload-image`"
         :style="{ backgroundImage: `url(${imgUrl})` }"
       ></div>
       <div class="filters">
@@ -21,6 +21,7 @@
           :key="index"
           :imgUrl="imgUrl"
           :filters="el"
+          @clickFilter="filterValue = $event"
         />
       </div>
     </div>
@@ -28,7 +29,7 @@
     <!-- 글작성페이지. -->
     <div v-if="tapState == 3">
       <div
-        class="upload-image"
+        :class="`${filterValue} upload-image`"
         :style="{ backgroundImage: `url(${imgUrl})` }"
       ></div>
       <div class="write">
@@ -61,10 +62,12 @@ export default {
   methods: {
     onChangeContent(e) {
       this.$emit("onChangeContent", e.target.value);
+      this.$emit("applyFilter", this.filterValue);
     },
   },
   data() {
     return {
+      filterValue: "",
       filters: [
         "aden",
         "_1977",
