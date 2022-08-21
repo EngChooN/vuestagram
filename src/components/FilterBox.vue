@@ -3,7 +3,11 @@
     :class="`${filters} filter-item`"
     :style="{ backgroundImage: `url(${imgUrl})` }"
     @click="$emit('clickFilter', filters)"
-  ></div>
+  >
+    <slot name="filterName"
+      ><span>{{ filters }}</span></slot
+    >
+  </div>
 </template>
 
 <script>

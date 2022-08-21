@@ -22,7 +22,9 @@
           :imgUrl="imgUrl"
           :filters="el"
           @clickFilter="filterValue = $event"
-        />
+        >
+          <template v-slot:filterName>{{ filters }}</template>
+        </FilterBox>
       </div>
     </div>
 
