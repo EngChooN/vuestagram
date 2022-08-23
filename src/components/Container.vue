@@ -11,7 +11,7 @@
         :style="{ backgroundImage: `url(${imgUrl})` }"
       ></div>
       <div class="filters">
-        <!-- <div class="filter-1"></div>
+        <!-- <div class="filter-1".></div>
         <div class="filter-1"></div>
         <div class="filter-1"></div>
         <div class="filter-1"></div>
